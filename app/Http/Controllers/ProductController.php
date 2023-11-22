@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -17,7 +18,7 @@ class ProductController extends Controller
         // set title
         $title = "Product List";
         // get all products
-        $products = Product::all();
+        $products = Product::paginate(5);
         // add truncated description
         foreach ($products as $product) {
             $product->truncated_description = Str::limit($product->description, 100);
@@ -82,7 +83,34 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // validate input request
+        $validate = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'stock' => 'required',
+            'category_id' => 'required',
+        ]);
+
+        // find the product by ID
+        $product = Product::findOrFail($id);
+
+        // update the product attributes
+
+        // check if cover is uploaded
+        if ($request->file('cover')) {
+
+            if ($product->cover) {
+                Storage::delete($product->cover);
+            }
+
+            $validated['cover'] = $request->file('cover')->store('images', 'public');
+        }
+
+        $product->update($validate);
+
+        // return view with success message
+        return redirect()->route('product.index')->with('success', 'Product has been updated');
     }
 
     /**
@@ -90,6 +118,11 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+        $product = Product::findOrFail($id);
+
+        $product->delete();
+
+        return redirect()->route('product.index')->with('success', 'Product has been deleted');
     }
 }

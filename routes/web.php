@@ -19,4 +19,7 @@ Route::get('/', [HomeController::class, 'index']);
 // Route::get('/product', [HomeController::class, 'product']);
 Route::get('/cart', [HomeController::class, 'cart']);
 
-Route::resource('product', ProductController::class);
+
+Route::group(['prefix' => 'dashboard'], function () {
+ Route::resource('product', ProductController::class);
+});
