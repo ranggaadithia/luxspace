@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Bar</title>
+    @vite('resources/css/app.css')
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
+    <script
+      src="https://unpkg.com/focus-visible@5.0.2/dist/focus-visible.js"
+      defer
+    ></script>
+    @stack('styles')
+  </head>
+  <body class="font-sans">
+<body>
+    <div class="fixed w-full top-0 z-50">
+      <nav
+      class="bg-glass py-5 md:px-12 px-4 transition-all duration-300 ease-in-out"
+    >
+      <div class="flex justify-between items-center">
+        <div class="md:ml-2">
+          <a href="#">
+            <img src="/src/img/logo.png" alt="" class="w-24 md:w-auto" />
+          </a>
+        </div>
+        <ul class="gap-7 text-xl text-white font-medium flex md:hidden">
+          <li>
+            <button
+              class="hover:text-pink-400 transition-all"
+              id="search-button"
+            >
+              <i class="bi bi-search"></i>
+            </button>
+          </li>
+
+          <li>
+            <a href="/cart.html" class="hover:text-pink-400 transition-all"
+              ><i class="bi bi-bag"></i
+            ></a>
+          </li>
+          <li>
+            <button class="transition-all" id="humberger-menu">
+              <i class="bi bi-list"></i>
+            </button>
+          </li>
+        </ul>
+        <ul class="gap-7 mr-8 text-lg text-white font-medium hidden md:flex">
+          <li>
+            <a
+              href="#showcase"
+              class="hover:underline hover:decoration-pink-400 hover:underline-offset-8 transition-all duration-300"
+              >Showcase</a
+            >
+          </li>
+          <li>
+            <a
+              href="#catalog"
+              class="hover:underline hover:decoration-pink-400 hover:underline-offset-8 transition-all duration-300"
+              >Catalog</a
+            >
+          </li>
+          <li>
+            <a
+              href=""
+              class="hover:underline hover:decoration-pink-400 hover:underline-offset-8 transition-all duration-300"
+              >Delivery</a
+            >
+          </li>
+          <li>
+            <a
+              href=""
+              class="hover:underline hover:decoration-pink-400 hover:underline-offset-8 transition-all duration-300"
+              >Find a Store</a
+            >
+          </li>
+          <li>
+            <button
+              class="hover:text-pink-400 transition-all"
+              id="search-button"
+            >
+              <i class="bi bi-search"></i>
+            </button>
+          </li>
+          <li>
+            <a href="/cart.html" class="hover:text-pink-400 transition-all"
+              ><i class="bi bi-bag"></i
+            ></a>
+          </li>
+        </ul>
+      </div>
+      <ul
+        class="hidden flex-col h-screen mt-16 pb-5 md:hidden text-center gap-y-5 transition-all duration-300 ease-in-out text-lg font-medium"
+        id="list-menu"
+      >
+        <li class="mt-2">
+          <a
+            href="#showcase"
+            class="underline decoration-pink-400 underline-offset-8 active:text-pink-400 transition-all duration-300"
+            >Showcase</a
+          >
+        </li>
+        <li>
+          <a
+            href="#catalog"
+            class="underline decoration-pink-400 underline-offset-8 transition-all duration-300"
+            >Catalog</a
+          >
+        </li>
+        <li>
+          <a
+            href=""
+            class="underline decoration-pink-400 underline-offset-8 transition-all duration-300"
+            >Delivery</a
+          >
+        </li>
+        <li>
+          <a
+            href=""
+            class="underline decoration-pink-400 underline-offset-8 transition-all duration-300"
+            >Find a Store</a
+          >
+        </li>
+      </ul>
+      <div class="mt-16 h-screen md:h-fit hidden" id="search-bar">
+        <form
+          action=""
+          class="flex items-center"
+          name="searchBar"
+          id="searchBar"
+        >
+          <i class="bi bi-search mr-3 text-gray-500 text-xl"></i>
+          <input
+            type="text"
+            name="keyword"
+            id=""
+            class="bg-transparent outline-none w-full placeholder:text-2xl placeholder:font-semibold placeholder:text-gray-500 text-2xl font-semibold"
+            autofocus
+            autocomplete="off"
+            placeholder="Search in LuxSpace"
+          />
+        </form>
+        <ul class="mt-10 pb-5 md:mt-14 text-sm">
+          <li class="text-gray-400">Suggested Search</li>
+          <a href="" class="hover:bg-gray-100 block transition-all">
+            <li class="mt-3 font-semibold">
+              <i class="bi bi-search mr-2"></i>
+              Classic Oak Buffet
+            </li>
+          </a>
+          <a href="" class="hover:bg-gray-100 block transition-all">
+            <li class="mt-3 font-semibold">
+              <i class="bi bi-search mr-2"></i>
+              Old Teak Wood Shoe Rack
+            </li>
+          </a>
+          <a href="" class="hover:bg-gray-100 block transition-all">
+            <li class="mt-3 font-semibold">
+              <i class="bi bi-search mr-2"></i>
+              Victoria's Regal Bed
+            </li>
+          </a>
+          <a href="" class="hover:bg-gray-100 block transition-all">
+            <li class="mt-3 font-semibold">
+              <i class="bi bi-search mr-2"></i>
+              Carrara Marble Coffee Table
+            </li>
+          </a>
+          <a href="" class="hover:bg-gray-100 block transition-all">
+            <li class="mt-3 font-semibold">
+              <i class="bi bi-search mr-2"></i>
+              Mirror
+            </li>
+          </a>
+        </ul>
+        <ul class="mt-10 text-sm lg:hidden">
+          <li class="text-gray-400">Quick Links</li>
+          <a href="" class="hover:bg-gray-100 block transition-all">
+            <li class="mt-3 font-semibold">
+              <i class="bi bi-arrow-right-short mr-2"></i>
+              Showcase
+            </li>
+          </a>
+          <a href="" class="hover:bg-gray-100 block transition-all">
+            <li class="mt-3 font-semibold">
+              <i class="bi bi-arrow-right-short mr-2"></i>
+              Catalog
+            </li>
+          </a>
+          <a href="" class="hover:bg-gray-100 block transition-all">
+            <li class="mt-3 font-semibold">
+              <i class="bi bi-arrow-right-short mr-2"></i>
+              Delivery
+            </li>
+          </a>
+          <a href="" class="hover:bg-gray-100 block transition-all">
+            <li class="mt-3 font-semibold">
+              <i class="bi bi-arrow-right-short mr-2"></i>
+              Find a Store
+            </li>
+          </a>
+        </ul>
+      </div>
+    </nav>
+  </div>
+    <main>{{ $slot }}</main>
+    {{-- <div class="border-t border-b border-gray-200 py-12 px-4">
+      <div class="flex justify-center mb-8">
+        <img
+          src="src/img/logo.png"
+          alt="Luxspace | Fulfill your house with beautiful furniture"
+        />
+      </div>
+      <aside class="container mx-auto">
+        <div
+          class="flex flex-wrap -mx-4 justify-center text-center md:text-left"
+        >
+          <div class="px-4 w-full md:w-2/12 mb-4 md:mb-0 accordion">
+            <h5 class="text-lg font-semibold mb-2 relative">Overview</h5>
+            <ul class="md:h-auto overflow-hidden">
+              <li>
+                <a href="#" class="hover:underline py-1 block">Shipping</a>
+              </li>
+              <li><a href="#" class="hover:underline py-1 block">Refund</a></li>
+              <li>
+                <a href="#" class="hover:underline py-1 block">Promotion</a>
+              </li>
+            </ul>
+          </div>
+          <div class="px-4 w-full md:w-2/12 mb-4 md:mb-0 accordion">
+            <h5 class="text-lg font-semibold mb-2 relative">Company</h5>
+            <ul class="md:h-auto overflow-hidden">
+              <li><a href="#" class="hover:underline py-1 block">About</a></li>
+              <li><a href="#" class="hover:underline py-1 block">Career</a></li>
+              <li>
+                <a href="#" class="hover:underline py-1 block">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+          <div class="px-4 w-full md:w-2/12 mb-4 md:mb-0 accordion">
+            <h5 class="text-lg font-semibold mb-2 relative">Explore</h5>
+            <ul class="md:h-auto overflow-hidden">
+              <li>
+                <a href="#" class="hover:underline py-1 block">Terms & Conds</a>
+              </li>
+              <li>
+                <a href="#" class="hover:underline py-1 block"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:underline py-1 block">For Developer</a>
+              </li>
+            </ul>
+          </div>
+          <div class="px-4 w-full md:w-3/12 mb-4 md:mb-0">
+            <h5 class="text-lg font-semibold mb-2 relative">Special Letter</h5>
+            <form action="#">
+              <label class="relative w-full">
+                <input
+                  class="bg-gray-100 rounded-xl py-3 px-5 w-full focus:outline-none"
+                  placeholder="Your email address"
+                />
+                <button class="bg-pink-400 absolute rounded-xl right-0 p-3">
+                  <i class="bi bi-send text-white px-2"></i>
+                </button>
+              </label>
+            </form>
+          </div>
+        </div>
+      </aside>
+    </div> --}}
+  @stack('scripts')
+</body>
+</html>

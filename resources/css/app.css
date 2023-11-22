@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.button-md {
+    @apply px-7 py-3 rounded-full bg-pink-200 hover:bg-pink-400 transition-all focus:ring focus:ring-pink-500;
+}
+
+.bg-glass {
+    @apply backdrop-blur-md bg-white/90  py-3 drop-shadow-md text-black;
+}
+.bg-glass-md {
+    @apply backdrop-blur-md bg-white/90  py-3 drop-shadow-xl text-black;
+}
+
+.bg-glass ul {
+    @apply text-slate-900;
+}
