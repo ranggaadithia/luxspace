@@ -126,4 +126,20 @@ class ProductController extends Controller
 
         return redirect()->route('product.index')->with('success', 'Product has been deleted');
     }
+
+    public function search(Request $request)
+    {
+        // set title
+        $title = "Product List";
+        // get all products
+        $products = Product::where('name', 'like', '%' . $request->search . '%')->paginate(5);
+        // add truncated description
+        foreach ($products as $product) {
+            $product->truncated_description = Str::limit($product->description, 100);
+        }
+        // get all categories for input
+        $categories = Category::all();
+        // return view with all variable
+        return view('dashboard.index', compact('title', 'products', 'categories'));
+    }
 }

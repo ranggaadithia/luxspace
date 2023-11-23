@@ -22,4 +22,5 @@ Route::get('/cart', [HomeController::class, 'cart']);
 
 Route::group(['prefix' => 'dashboard'], function () {
  Route::resource('product', ProductController::class);
+ Route::post('product/search', [ProductController::class, 'search'])->name('product.search');
 });

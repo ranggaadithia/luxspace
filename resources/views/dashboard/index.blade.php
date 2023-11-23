@@ -64,6 +64,16 @@
     </div>
   @endif
 
+  <div class="">
+    <form action="{{ route('product.search') }}" method="POST">
+      @csrf
+      <div class="mb-3 d-flex">
+        <input type="search" class="form-control" id="search" placeholder="search..." name="search" autocomplete="off">
+        <button type="submit" class="ms-5 btn btn-primary">Search</button>
+      </div>
+    </form>
+  </div>
+
   <table class="table display mt-3">
     <thead>
         <tr>
