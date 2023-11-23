@@ -42,6 +42,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+
         // validate input request
         $validate = $request->validate([
             'name' => 'required',
@@ -95,16 +96,14 @@ class ProductController extends Controller
         // find the product by ID
         $product = Product::findOrFail($id);
 
-        // update the product attributes
-
-        // check if cover is uploaded
+        // check if cover is uploaded   
         if ($request->file('cover')) {
-
-            if ($product->cover) {
-                Storage::delete($product->cover);
-            }
-
-            $validated['cover'] = $request->file('cover')->store('images', 'public');
+            // delete old cover
+            Storage::disk('public')->delete($product->cover);
+            // change cover name (avoid duplicate name)
+            $imageName = time() . '.' . $request->cover->extension();
+            // store new cover
+            $validate['cover'] =  $request->cover->storeAs('images', $imageName, 'public');
         }
 
         $product->update($validate);
@@ -120,6 +119,8 @@ class ProductController extends Controller
     {
 
         $product = Product::findOrFail($id);
+
+        Storage::disk('public')->delete($product->cover);
 
         $product->delete();
 
